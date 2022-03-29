@@ -10,14 +10,12 @@ class MemoryGame {
     if (!this.cards){
       return;
     }
-
-    const shuffleArray = [];
     for(let i = 0; i < this.cards.length; i++){
       const randomCardIndex = Math.floor(Math.random() * this.cards.length);
       const randomCard = this.cards[randomCardIndex];
-      shuffleArray.push(randomCard);
+      this.cards[randomCardIndex] = this.cards[i];
+      this.cards[i] = randomCard;
     }
-    this.cards = shuffleArray;
   }
 
   checkIfPair(card1, card2) {
@@ -33,9 +31,8 @@ class MemoryGame {
 
   checkIfFinished() {
     if (this.pairsGuessed === (this.cards.length / 2)){
-      return true;
+    
     }
-    return false;
   }
   
 }
